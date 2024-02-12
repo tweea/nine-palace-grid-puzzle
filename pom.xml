@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 基本属性 - 项目属性 -->
+    <groupId>cn.tweea</groupId>
+    <artifactId>tw-nine-palace-grid-puzzle</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <!-- 基本属性 - 属性 -->
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+
+    <!-- 基本属性 - 项目关系 -->
+    <parent>
+        <groupId>net.sf.matrixjavalib</groupId>
+        <artifactId>genesis11</artifactId>
+        <version>41</version>
+    </parent>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>3.2.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <!-- compile -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <!-- 使用 jcl-over-slf4j 代替 -->
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-jcl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <!-- 使用 Log4j2 -->
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <!-- 使用 Jetty -->
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- provided -->
+        <!-- runtime -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- test -->
+    </dependencies>
+
+    <!-- 构建设置 -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- 项目信息 -->
+    <name>Tweea :: 九宫格拼图</name>
+    <description>九宫格拼图</description>
+    <inceptionYear>2024</inceptionYear>
+
+    <!-- 构建环境 -->
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/tweea/nine-palace-grid-puzzle/issues</url>
+    </issueManagement>
+    <scm>
+        <connection>scm:git:https://github.com/tweea/nine-palace-grid-puzzle.git</connection>
+        <developerConnection>scm:git:https://github.com/tweea/nine-palace-grid-puzzle.git</developerConnection>
+        <url>https://github.com/tweea/nine-palace-grid-puzzle</url>
+        <tag>HEAD</tag>
+    </scm>
+</project>

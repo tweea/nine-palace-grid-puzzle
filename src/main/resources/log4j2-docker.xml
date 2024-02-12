@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <RollingFile name="RollingFile" fileName="${env:LOGGING_PATH}/${env:LOGGING_FILENAME}.log" filePattern="${env:LOGGING_PATH}/${env:LOGGING_FILENAME}-%d{yyyyMMdd}-%i.log.gz">
+            <PatternLayout pattern="%d %-5p [%t]%X %c{1.}(%F:%L) - %m%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="100 MB" />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="RollingFile" />
+        </Root>
+        <Logger name="cn.tweea" level="info" />
+    </Loggers>
+</Configuration>
