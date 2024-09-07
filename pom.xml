@@ -17,14 +17,14 @@
     <parent>
         <groupId>net.sf.matrixjavalib</groupId>
         <artifactId>genesis11</artifactId>
-        <version>41</version>
+        <version>43</version>
     </parent>
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>3.2.2</version>
+                <version>3.3.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -92,7 +92,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.2.2</version>
+                <version>3.3.3</version>
                 <configuration>
                     <executable>true</executable>
                 </configuration>
