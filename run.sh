@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Base on Spring Boot's launch.script, date 2019-09-22
+# Base on Spring Boot's launch.script, date 2022-01-13
 # https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-tools/spring-boot-loader-tools/src/main/resources/org/springframework/boot/loader/tools/launch.script
 
 [[ -n "$DEBUG" ]] && set -x
@@ -57,6 +57,9 @@ log_file="$LOG_FOLDER/$LOG_FILENAME"
 # Determine the user to run as if we are root
 # shellcheck disable=SC2012
 [[ $(id -u) == "0" ]] && run_user=$(ls -ld "$jarfile" | awk '{print $3}')
+
+# Ensure the user actually exists
+id -u "$run_user" &> /dev/null || unset run_user
 
 # Run as user specified in RUN_AS_USER
 if [[ -n "$RUN_AS_USER" ]]; then
@@ -146,7 +149,7 @@ stop() {
 
 do_stop() {
   kill "$1" &> /dev/null || { echoRed "Unable to kill process $1"; return 1; }
-  for i in $(seq 1 $STOP_WAIT_TIME); do
+  for ((i = 1; i <= STOP_WAIT_TIME; i++)); do
     isRunning "$1" || { echoGreen "Stopped $jarfile[$1]"; rm -f "$2"; return 0; }
     [[ $i -eq STOP_WAIT_TIME/2 ]] && kill "$1" &> /dev/null
     sleep 1
@@ -164,7 +167,7 @@ force_stop() {
 
 do_force_stop() {
   kill -9 "$1" &> /dev/null || { echoRed "Unable to kill process $1"; return 1; }
-  for i in $(seq 1 $STOP_WAIT_TIME); do
+  for ((i = 1; i <= STOP_WAIT_TIME; i++)); do
     isRunning "$1" || { echoGreen "Stopped $jarfile[$1]"; rm -f "$2"; return 0; }
     [[ $i -eq STOP_WAIT_TIME/2 ]] && kill -9 "$1" &> /dev/null
     sleep 1
