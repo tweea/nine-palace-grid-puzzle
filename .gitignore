@@ -8,6 +8,7 @@ release.properties
 
 # Eclipse
 .classpath
+.factorypath
 .project
 .settings
 
